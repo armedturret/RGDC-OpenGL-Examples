@@ -14,6 +14,8 @@ using namespace std;
 const int WINDOW_WIDTH = 800;
 const int WINDOW_HEIGHT = 600;
 
+const int RING_COUNT = 18;
+
 const float FOV = 90.0f;
 
 unsigned int vbo, vao, ebo, texture;
@@ -36,7 +38,7 @@ int main() {
 	glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE); //do not allow window resizing
 
 	//create the window
-	GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "Cameras Example", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "CHAOS", NULL, NULL);
 
 	//set window as target
 	glfwMakeContextCurrent(window);
@@ -61,7 +63,7 @@ int main() {
 
 	//create shader
 	Shader shader;
-	shader.compile("shaders/camera.vert", "shaders/camera.frag");
+	shader.compile("shaders/chaos.vert", "shaders/chaos.frag");
 
 	//initialize the buffers
 	glGenBuffers(1, &vbo);
@@ -168,7 +170,7 @@ int main() {
 	projection = glm::perspective(glm::radians(FOV), (float)WINDOW_WIDTH / (float)WINDOW_HEIGHT, 0.001f, 1000.0f);
 
 	//create the view matrix
-	view = glm::lookAt(glm::vec3(0.0f, 0.0f, -3.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	view = glm::lookAt(glm::vec3(0.0f, 0.0f, -15.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
 
 	//main window loop
 	while (!glfwWindowShouldClose(window))
@@ -188,15 +190,43 @@ int main() {
 		//set the texture uniform
 		glUniform1i(shader.getUniformLocation("texUniform"), 0);
 
-		//rotate the model
-		model = glm::rotate(glm::mat4(1.0f), glm::radians((float)glfwGetTime() * 45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+		//bind vao
+		glBindVertexArray(vao);
+
+		//first model should be larger scale saul at spawn and pulse
+		model = glm::scale(glm::mat4(1.0f), glm::vec3(10.0f));
+		int pulse = 1;
+		glUniform1iv(shader.getUniformLocation("pulse"), 1, &pulse);
+
+		//use time
+		float time = (float)glfwGetTime();
+		glUniform1fv(shader.getUniformLocation("time"), 1, &time);
 
 		//set the mvp value
 		mvp = projection * view * model;
 		glUniformMatrix4fv(shader.getUniformLocation("mvp"), 1, GL_FALSE, &mvp[0][0]);
 
-		glBindVertexArray(vao);
 		glDrawArrays(GL_TRIANGLES, 0, 36);
+
+		//draw ring of sauls
+		pulse = 0;
+		glUniform1iv(shader.getUniformLocation("pulse"), 1, &pulse);
+		for (int i = 0; i < RING_COUNT; i++) {
+			float spot = (float)i + (float)glfwGetTime();
+			//ring making
+			model = glm::rotate(glm::mat4(1.0f), glm::radians(360.0f / RING_COUNT * spot), glm::vec3(0.0f, 1.0f, 0.0f));
+			model = glm::translate(model, glm::vec3(10.0f, 0.0f, 0.0f));
+
+			//random spot rotation
+			model = glm::rotate(model, glm::radians(45.0f * spot * 2.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+			model = glm::rotate(model, glm::radians(25.0f * spot * 2.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+			model = glm::rotate(model, glm::radians(180.0f * spot * 2.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+
+			mvp = projection * view * model;
+			glUniformMatrix4fv(shader.getUniformLocation("mvp"), 1, GL_FALSE, &mvp[0][0]);
+
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
 
 		//swap buffers to prevent flickering
 		glfwSwapBuffers(window);
