@@ -5,8 +5,8 @@
 
 using namespace std;
 
-const int WIDTH = 640;
-const int HEIGHT = 480;
+const int WIDTH = 800;
+const int HEIGHT = 600;
 
 int main() {
 	//initialize GLFW (windows and stuff)
@@ -58,6 +58,9 @@ int main() {
 		//swap buffers to prevent flickering
 		glfwSwapBuffers(window);
 	}
+
+	//destroy all resources
+	glfwTerminate();
 
 	return EXIT_SUCCESS;
 }

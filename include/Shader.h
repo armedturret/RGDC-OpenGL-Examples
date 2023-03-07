@@ -1,12 +1,17 @@
 #pragma once
+#include <glm/glm.hpp>
 
 #include <string>
 #include <vector>
 
+struct Vertex {
+	glm::vec3 position;
+	glm::vec3 normal;
+	glm::vec2 texCoord;
+};
+
 class Shader {
 	public:
-		static void freeShaders();
-
 		Shader();
 
 		//returns a non-zero error code if compilation failed for whatever reason
