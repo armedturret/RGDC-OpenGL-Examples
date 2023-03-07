@@ -5,7 +5,8 @@ You will need to install the following packages.
  - glew 
  - glm
  - glfw3
- I recommend using [vcpkg](https://github.com/microsoft/vcpkg). The built in sln files are for VS Community 2022 and will work with the integrate install for vcpkg.
+
+I recommend using [vcpkg](https://github.com/microsoft/vcpkg). The built in sln files are for VS Community 2022 and will work with the integrate install for vcpkg.
 ## What is this nightmare?
 - Shader.h/.cpp - a small utility class for compiling shaders
 - stb_image.h - one file header lib for loading images
