@@ -11,8 +11,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleCameras", "ExampleCa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleTextures", "ExampleTextures\ExampleTextures.vcxproj", "{5376E386-B147-478F-AC2B-25012CCC766C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ExampleLighting", "ExampleLighting\ExampleLighting.vcxproj", "{916F4F2B-7402-497F-980D-28B2247B39E0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -53,14 +51,6 @@ Global
 		{5376E386-B147-478F-AC2B-25012CCC766C}.Release|x64.Build.0 = Release|x64
 		{5376E386-B147-478F-AC2B-25012CCC766C}.Release|x86.ActiveCfg = Release|Win32
 		{5376E386-B147-478F-AC2B-25012CCC766C}.Release|x86.Build.0 = Release|Win32
-		{916F4F2B-7402-497F-980D-28B2247B39E0}.Debug|x64.ActiveCfg = Debug|x64
-		{916F4F2B-7402-497F-980D-28B2247B39E0}.Debug|x64.Build.0 = Debug|x64
-		{916F4F2B-7402-497F-980D-28B2247B39E0}.Debug|x86.ActiveCfg = Debug|Win32
-		{916F4F2B-7402-497F-980D-28B2247B39E0}.Debug|x86.Build.0 = Debug|Win32
-		{916F4F2B-7402-497F-980D-28B2247B39E0}.Release|x64.ActiveCfg = Release|x64
-		{916F4F2B-7402-497F-980D-28B2247B39E0}.Release|x64.Build.0 = Release|x64
-		{916F4F2B-7402-497F-980D-28B2247B39E0}.Release|x86.ActiveCfg = Release|Win32
-		{916F4F2B-7402-497F-980D-28B2247B39E0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
