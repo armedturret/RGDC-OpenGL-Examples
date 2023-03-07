@@ -56,6 +56,7 @@ int main() {
 
 	//various opengl settings
 	glCullFace(GL_BACK); //cull backfaces to reduce render time
+	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST); //allow depth testing for 3D
 
 	//create shader
@@ -81,7 +82,7 @@ int main() {
 	//use an ebo to avoid duplicate data
 	unsigned int indices[] = {
 		0, 1, 2,
-		1, 2, 3
+		2, 1, 3
 	};
 
 	//specify vertices is the data

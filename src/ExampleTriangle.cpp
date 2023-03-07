@@ -48,6 +48,7 @@ int main() {
 
 	//various opengl settings
 	glCullFace(GL_BACK); //cull backfaces to reduce render time
+	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST); //allow depth testing for 3D
 
 	//create shader
@@ -67,8 +68,8 @@ int main() {
 	//set vertices to be the position parameter of our vbo
 	float vertices[] = {
 		-0.5f, 0.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		0.5f, 0.0f, 0.0f
+		0.5f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f
 	};
 	//specify vertices is the data
 	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);

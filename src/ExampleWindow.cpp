@@ -44,6 +44,7 @@ int main() {
 
 	//various opengl settings
 	glCullFace(GL_BACK); //cull backfaces to reduce render time
+	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST); //allow depth testing for 3D
 
 	//main window loop
